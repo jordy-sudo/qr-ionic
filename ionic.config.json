@@ -1,0 +1,7 @@
+{
+  "name": "qrCresa",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
