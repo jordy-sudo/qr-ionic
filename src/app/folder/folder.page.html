@@ -3,19 +3,47 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>{{ folder }}</ion-title>
+    <ion-title>Valores a Pagar</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">{{ folder }}</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="form-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Consulta de Información</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <form [formGroup]="formCredito" (ngSubmit)="onSubmit()">
+          <!-- Campo de Cédula -->
+            <ion-input class="form-item" label="Cédula" label-placement="floating" fill="outline" placeholder="Ingrese su cédula"
+              formControlName="cedula" name="cedula" required minlength="10" maxlength="13"></ion-input>
+          <!-- Mensaje de error -->
+          <ng-container *ngIf="formCredito.controls.cedula.errors && (formCredito.touched || formCredito.dirty)">
+            <ion-label class="error-label" color="danger">
+              * {{ getFirstErrorMessage(formCredito.controls.cedula.errors,"Cédula") }}
+            </ion-label>
+          </ng-container>
 
-  <div id="container">
-    <strong class="capitalize">{{ folder }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+          <!-- Campo de Teléfono -->
+            <ion-input class="form-item" label="Número Telefónico" label-placement="floating" fill="outline" type="tel"
+              placeholder="Ingrese su número telefónico" formControlName="telefono" name="telefono" required
+              pattern="^[0-9]{10}$">
+            </ion-input>
+          <!-- Mensaje de error -->
+          <ng-container *ngIf="formCredito.controls.telefono.errors && (formCredito.touched || formCredito.dirty)">
+            <ion-label class="error-label" color="danger">
+              * {{ getFirstErrorMessage(formCredito.controls.telefono.errors,"Telefóno") }}
+            </ion-label>
+          </ng-container>
+
+          <!-- Botón de Consultar -->
+          <ion-button expand="block" [disabled]="!formCredito.valid" type="submit" color="primary">
+            Consultar
+          </ion-button>
+        </form>
+      </ion-card-content>
+
+    </ion-card>
   </div>
 </ion-content>

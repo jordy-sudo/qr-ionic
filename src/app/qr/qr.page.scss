@@ -1,0 +1,19 @@
+// .center-content {
+//   display: flex;
+//   justify-content: center; /* Centra horizontalmente */
+//   align-items: center; /* Centra verticalmente */
+//   height: 100%; /* Asegura que ocupe todo el alto disponible */
+// }
+
+
+.swiper-slide {
+  justify-content: center; /* Centra horizontalmente el contenido del slide */
+  align-items: center; /* Centra verticalmente el contenido del slide */
+}
+
+ion-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Asegura que el contenido dentro del card esté centrado */
+  align-items: center; /* Alinea el contenido del card horizontalmente */
+}

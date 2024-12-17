@@ -1,0 +1,12 @@
+{
+  "/api": {
+    "target": "http://192.168.82.51:97",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/resources": {
+    "target": "http://desarrollocrecoscorp.com",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

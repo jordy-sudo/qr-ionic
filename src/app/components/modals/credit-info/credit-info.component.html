@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Información de Crédito</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Información del Usuario -->
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-icon name="person" slot="start"></ion-icon>
+          <ion-label>
+            <h4>Nombre</h4>
+            <p>{{ data.name }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-icon name="mail" slot="start"></ion-icon>
+          <ion-label>
+            <h4>Email</h4>
+            <p>{{ data.email }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-icon name="call" slot="start"></ion-icon>
+          <ion-label>
+            <h4>Teléfono</h4>
+            <p>{{ data.phone }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Tabla de Balances -->
+  <!-- <ion-card>
+    <ion-card-header>
+      <ion-card-title>Balances</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col><strong>Total Balance</strong></ion-col>
+          <ion-col><strong>Disponible</strong></ion-col>
+          <ion-col><strong>Creado</strong></ion-col>
+        </ion-row>
+        <ion-row *ngFor="let balance of data.balance">
+          <ion-col>{{ balance.totalBalance | currency }}</ion-col>
+          <ion-col>{{ balance.available | currency }}</ion-col>
+          <ion-col>{{ balance.createdAt | date: 'mediumDate' }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card> -->
+
+  <!-- Tabla de Créditos -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Créditos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col><strong>Monto</strong></ion-col>
+          <ion-col><strong>Tasa de Interés</strong></ion-col>
+          <ion-col><strong>Inicio</strong></ion-col>
+          <ion-col><strong>Fin</strong></ion-col>
+          <ion-col><strong>Estado</strong></ion-col>
+        </ion-row>
+        <ion-row *ngFor="let credit of data.credits" (click)="showCreditDetails(credit)">
+          <ion-col>{{ credit.amount | currency }}</ion-col>
+          <ion-col>{{ credit.interestRate | number: '1.1-2' }}%</ion-col>
+          <ion-col>{{ credit.startDate | date: 'mediumDate' }}</ion-col>
+          <ion-col>{{ credit.endDate | date: 'mediumDate' }}</ion-col>
+          <ion-col>{{ credit.status }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>QR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="center-content">
+    <!-- Swiper Container -->
+    <swiper-container
+      [slidesPerView]="1"
+      [pagination]="{ clickable: true }"
+      [navigation]="true"
+      [loop]="true"
+      class="swiper">
+      <!-- Slide 1 -->
+      <!-- <swiper-slide>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>QR CRESA</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <qrcode [qrdata]="qrCodeCresa" [width]="400" [errorCorrectionLevel]="'M'"></qrcode>
+          </ion-card-content>
+        </ion-card>
+      </swiper-slide> -->
+
+      <!-- Slide 2 -->
+      <swiper-slide>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>QR CRECOS</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <qrcode [qrdata]="qrCodeCrecos" [width]="400" [errorCorrectionLevel]="'M'"></qrcode>
+          </ion-card-content>
+        </ion-card>
+      </swiper-slide>
+
+      <!-- Slide 3 -->
+      <swiper-slide>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>QR ORVJAP</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <qrcode [qrdata]="qrCodeOrvJap" [width]="400" [errorCorrectionLevel]="'M'"></qrcode>
+          </ion-card-content>
+        </ion-card>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+</ion-content>

@@ -81,9 +81,15 @@
             },
             "ci": {
               "progress": false
+            },
+            "options": {
+              "proxyConfig": "proxy.conf.json"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "proxy.conf.json"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -136,7 +142,8 @@
   "cli": {
     "schematicCollections": [
       "@ionic/angular-toolkit"
-    ]
+    ],
+    "analytics": "0b0ed7b8-6e2a-4a5b-b21d-8b7182998932"
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {

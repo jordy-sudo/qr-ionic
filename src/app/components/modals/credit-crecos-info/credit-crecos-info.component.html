@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Información de Crédito</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Información del Usuario -->
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-icon name="person" slot="start"></ion-icon>
+          <ion-label>
+            <h4>Nombre</h4>
+            <p>{{ data.data.nombres }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Tabla de Balances -->
+  <!-- <ion-card>
+    <ion-card-header>
+      <ion-card-title>Balances</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col><strong>Total Balance</strong></ion-col>
+          <ion-col><strong>Disponible</strong></ion-col>
+          <ion-col><strong>Creado</strong></ion-col>
+        </ion-row>
+        <ion-row *ngFor="let balance of data.balance">
+          <ion-col>{{ balance.totalBalance | currency }}</ion-col>
+          <ion-col>{{ balance.available | currency }}</ion-col>
+          <ion-col>{{ balance.createdAt | date: 'mediumDate' }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card> -->
+
+  <!-- Tabla de Créditos -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Créditos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col><strong>Credito</strong></ion-col>
+          <ion-col><strong>FechaPago</strong></ion-col>
+        </ion-row>
+        <ion-row  (click)="showCreditDetails()">
+          <ion-col>{{ data.data.secuencia }}</ion-col>
+          <ion-col>{{ data.data.FechaPago | date: 'mediumDate' }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
