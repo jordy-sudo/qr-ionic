@@ -1,66 +1,114 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Información de Crédito</ion-title>
+    <ion-title>Lista de Créditos</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="dismissModal()">Cerrar</ion-button>
+      <ion-button (click)="dismissModal()" >Salir</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!-- Información del Usuario -->
+  <div *ngIf="!data?.lista[0] || data.lista.length === 0" class="ion-padding">
+    <ion-text color="medium">
+      <h4>No se encontraron créditos.</h4>
+    </ion-text>
+  </div>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-icon name="person" slot="start"></ion-icon>
-          <ion-label>
-            <h4>Nombre</h4>
-            <p>{{ data.data.nombres }}</p>
-          </ion-label>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-accordion-group *ngIf="data?.lista[0] && data.lista.length > 0">
+    <ion-accordion *ngFor="let credito of data.lista[0].SaldoOperaciones; let i = index">
+      <ion-item slot="header" color="light" lines="full">
+        <ion-icon name="card-outline" slot="start" color="primary" size="large"></ion-icon>
+        <ion-label>
+          <h3>Crédito : #{{ credito.CodigoOperacion }}</h3>
+          <p style="margin: 0; color: #6b6b6b; font-size: 0.9em;">
+            {{ credito.OrigenDeuda }} <span style="font-weight: bold;">|</span> {{ credito.UnidadNegocio }}
+          </p>
+        </ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-grid>
+          <!-- Primera fila -->
+          <ion-row>
+            <ion-col size="6">
+              <ion-item>
+                <ion-icon name="calendar-outline" slot="start" color="primary"></ion-icon>
+                <ion-input label="Fecha Máx Pago" label-placement="floating" fill="solid" placeholder="Enter text"
+                  readonly="true" value="{{ credito.FechaVencimiento }}">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item>
+                <ion-icon name="list-circle-outline" slot="start" color="primary"></ion-icon>
+                <ion-input label="Cuotas Totales" label-placement="floating" fill="solid" placeholder="Enter text"
+                  readonly="true" value="{{ credito.CortesPendientes }}">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
 
-  <!-- Tabla de Balances -->
-  <!-- <ion-card>
-    <ion-card-header>
-      <ion-card-title>Balances</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col><strong>Total Balance</strong></ion-col>
-          <ion-col><strong>Disponible</strong></ion-col>
-          <ion-col><strong>Creado</strong></ion-col>
-        </ion-row>
-        <ion-row *ngFor="let balance of data.balance">
-          <ion-col>{{ balance.totalBalance | currency }}</ion-col>
-          <ion-col>{{ balance.available | currency }}</ion-col>
-          <ion-col>{{ balance.createdAt | date: 'mediumDate' }}</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card> -->
+          <!-- Segunda fila -->
+          <ion-row>
+            <ion-col size="6">
+              <ion-item>
+                <ion-icon name="cash-outline" slot="start" color="primary"></ion-icon>
+                <ion-input label="Cuota a Pagar" label-placement="floating" fill="solid" placeholder="Enter text"
+                  readonly="true" value="{{ credito.ValorMinimo }}">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item>
+                <ion-icon name="document-text-outline" slot="start" color="primary"></ion-icon>
+                <ion-input label="Estado Cuenta" label-placement="floating" fill="solid" placeholder="Enter text"
+                  readonly="true" value="{{ credito.TipoCartera }}">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
 
-  <!-- Tabla de Créditos -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Créditos</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col><strong>Credito</strong></ion-col>
-          <ion-col><strong>FechaPago</strong></ion-col>
-        </ion-row>
-        <ion-row  (click)="showCreditDetails()">
-          <ion-col>{{ data.data.secuencia }}</ion-col>
-          <ion-col>{{ data.data.FechaPago | date: 'mediumDate' }}</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
+          <!-- Tercera fila -->
+          <ion-row>
+            <ion-col size="6">
+              <ion-item>
+                <ion-icon name="pricetag-outline" slot="start" color="primary"></ion-icon>
+                <ion-input label="Cargos" label-placement="floating" fill="solid" placeholder="Enter text"
+                  readonly="true" value="{{ credito.ValorMinimoCorriente | currency }}">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item>
+                <ion-icon name="wallet-outline" slot="start" color="primary"></ion-icon>
+                <ion-input label="Mínimo a Pagar" label-placement="floating" fill="solid" placeholder="Enter text"
+                  readonly="true" value="{{ credito.ValorMinimo | currency }}">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <!-- Cuarta fila -->
+          <ion-row>
+            <ion-col size="6">
+              <ion-item>
+                <ion-icon name="arrow-forward-circle-outline" slot="start" color="primary"></ion-icon>
+                <ion-input label="A Cobrar" label-placement="floating" fill="solid" placeholder="Enter text"
+                  readonly="true" value="{{ credito.ValorPropuesto | currency }}">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item>
+                <ion-icon name="refresh-circle-outline" slot="start" color="primary"></ion-icon>
+                <ion-input label="Precancela" label-placement="floating" fill="solid" placeholder="Enter text"
+                  readonly="true" value="{{ credito.ValorPropuesto | currency }}">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+
 </ion-content>

@@ -1,0 +1,38 @@
+<div id="container">
+  <strong class="ion-text-primary">Bienvenido</strong>
+  <p>Por favor, ingresa tus datos</p>
+  <div class="form-container">
+    <ion-card>
+      <ion-card-content>
+        <form [formGroup]="formCredito" (ngSubmit)="onSubmit()">
+          <!-- Campo de Cédula -->
+          <ion-input class="form-item" label="Cédula" label-placement="floating" fill="outline" placeholder="Ingrese su cédula"
+            formControlName="cedula" name="cedula" required minlength="10" maxlength="13"></ion-input>
+          <!-- Mensaje de error -->
+          <ng-container *ngIf="formCredito.controls.cedula.errors && (formCredito.touched || formCredito.dirty)">
+            <ion-label class="error-label" color="danger">
+              * {{ getFirstErrorMessage(formCredito.controls.cedula.errors, "Cédula") }}
+            </ion-label>
+          </ng-container>
+
+          <!-- Campo de Teléfono -->
+          <ion-input class="form-item" label="Número Telefónico" label-placement="floating" fill="outline" type="tel"
+            placeholder="Ingrese su número telefónico" formControlName="telefono" name="telefono" required
+            pattern="^[0-9]{10}$">
+          </ion-input>
+          <!-- Mensaje de error -->
+          <ng-container *ngIf="formCredito.controls.telefono.errors && (formCredito.touched || formCredito.dirty)">
+            <ion-label class="error-label" color="danger">
+              * {{ getFirstErrorMessage(formCredito.controls.telefono.errors, "Teléfono") }}
+            </ion-label>
+          </ng-container>
+
+          <!-- Botón de Consultar -->
+          <ion-button expand="block" [disabled]="!formCredito.valid" type="submit" color="primary">
+            Consultar
+          </ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</div>

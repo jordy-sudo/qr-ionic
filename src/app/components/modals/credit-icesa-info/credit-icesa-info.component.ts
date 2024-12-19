@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-credit-icesa-info',
@@ -8,13 +9,17 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CreditIcesaInfoComponent  implements OnInit {
   @Input() data:any;
   
-  constructor() { }
+  constructor(
+    private modalController: ModalController,
+  ) { }
 
   ngOnInit() {
     console.log(this.data); 
   }
 
-
+  dismissModal() {
+    this.modalController.dismiss();
+  }
 
 
 }

@@ -1,17 +1,17 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Observable} from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ResponseCrecos } from '../interfaces/crecos/response.interface';
+import { RequestCrecos } from '../interfaces/crecos/request.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CrecosCreditService {
-  private apiUrl: string = environment.cresaCredit;
+  private apiUrl: string = environment.appUrlCrecos;
 
-  constructor(private http: HttpClient, private loadingController: LoadingController) { }
+  constructor(private http: HttpClient) { }
 
   /**
    * Realiza una solicitud POST al servicio de CresaCredit
@@ -19,21 +19,23 @@ export class CrecosCreditService {
    * @param data Los datos a enviar en la solicitud
    * @returns Un Observable con la respuesta de la API
    */
-  async crecosCreditByCi(cedula: string): Promise<Observable<any>> {
-    const endpoint = '/resources/api/saldos/consultar';
+  async crecosCreditByCi(cedula: string): Promise<Observable<ResponseCrecos>> {
+    // const endpoint = 'pago-deuda-unificada/consultardeuda';
+    const endpoint = '/CAR_ServicioRecaudoCia01/api/pago-deuda-unificada/consultardeuda';
 
-    // Mostrar el loading
-    const loading = await this.loadingController.create({
-      message: 'Cargando...',
-    });
-    await loading.present();
+    const requestPayload: RequestCrecos = {
+      "CodigoEmpresa": "000001",
+      "UnidadNegocio": "RETAIL",
+      "CodigoCliente": 0,
+      "IdentificacionCliente": cedula,
+      "FechaRecaudo": "2024-12-17",
+      "Almacen": "5A",
+      "Usuario": "USUARIO",
+      "Terminal": "TERMINAL"
+    }
 
-    // const response = this.http.post(`${this.appUrlDev}/${endpoint}`, {"NUM_CEDULA": cedula});
-    const response =this.http.post(endpoint,{"cedula":cedula})
-
-    response.subscribe({
-      complete: () => loading.dismiss()
-    });
+    // const response = this.http.post<ResponseCrecos>(`${this.apiUrl}/${endpoint}`,requestPayload);
+    const response =this.http.post<ResponseCrecos>(endpoint,requestPayload);
 
     return response;
   }

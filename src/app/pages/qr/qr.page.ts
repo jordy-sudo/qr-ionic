@@ -10,9 +10,11 @@ import { environment } from 'src/environments/environment';
 })
 export class QrPage implements OnInit {
   private appUrl: string = environment.appUrl;
+
+
   qrCodeCresa: string = '';
   qrCodeCrecos: string = '';
-  qrCodeOrvJap: string = 'test';
+  qrCodeOrvJap: string = '';
 
   constructor() { }
 
@@ -23,9 +25,11 @@ export class QrPage implements OnInit {
   generateQrCode(){
     // const token = this.generateToken({userId:1234, role:'user'});
     // this.qrCodeCresa = `${this.appUrl}/credit?unidadNegocio=cresa`
-    this.qrCodeCrecos = `${this.appUrl}/credit?unidadNegocio=orvjap`
-    this.qrCodeOrvJap = `${this.appUrl}/credit?unidadNegocio=crecos`
+    this.qrCodeCrecos = `${this.appUrl}/folder/credit?unidadNegocio=orvjap`
+    this.qrCodeOrvJap = `${this.appUrl}/folder/credit?unidadNegocio=crecos`
   }
+
+  
 
   // generateToken(payload:object):string{
   //   try {

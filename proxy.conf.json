@@ -8,5 +8,10 @@
     "target": "http://desarrollocrecoscorp.com",
     "secure": false,
     "changeOrigin": true
+  },
+  "/CAR_ServicioRecaudoCia01": {
+    "target": "http://192.168.82.93:4961",
+    "secure": false,
+    "changeOrigin": true
   }
 }

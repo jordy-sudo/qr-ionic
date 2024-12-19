@@ -110,7 +110,7 @@ export class FolderPage implements OnInit {
       case 'cresa':
         serviceObservable = this.cresaCreditService.cresaCreditByCi(cedula);
         break;
-      case 'icesa':
+      case 'orvjap':
         serviceObservable = await this.icesaCreditService.icesaCreditByCi(cedula);
         break;
       case 'crecos':
@@ -121,12 +121,13 @@ export class FolderPage implements OnInit {
     }
 
     try {
-      const response = await serviceObservable.toPromise(); // Convertimos el Observable en una Promesa
+      const response = await serviceObservable.toPromise(); 
+      
       if (response && response.data) {
-        return response; // Devuelve la respuesta si los datos están presentes
+        return response;
       } else {
         console.error('No data received:', response);
-        return null; // Si no hay datos
+        return null; 
       }
     } catch (error) {
       console.error('Error fetching credit balance:', error);

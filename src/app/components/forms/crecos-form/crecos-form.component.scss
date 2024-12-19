@@ -1,0 +1,51 @@
+ion-content {
+    --background: #f8f9fa;
+    /* Opcional, cambia el fondo si es necesario */
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    /* Opcional, cambia el fondo si es necesario */
+    justify-content: center;
+    /* Centrar verticalmente */
+    align-items: center;
+    /* Centrar horizontalmente */
+    min-height: 80vh;
+    /* Asegura que ocupe toda la pantalla */
+    text-align: center;
+    padding: 16px;
+    /* Espaciado interno para evitar bordes pegados */
+}
+
+#container strong {
+    font-size: 20px;
+    line-height: 26px;
+    color: var(--ion-color-primary);
+}
+
+#container p {
+    font-size: 16px;
+    line-height: 22px;
+    color: #8c8c8c;
+    margin: 8px 0;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+ion-card {
+    width: 100%;
+}
+
+.form-item {
+    margin-top: 15px;
+    margin-bottom: 16px;
+}
+
+.error-label {
+    margin-top: 4px;
+    display: block;
+}

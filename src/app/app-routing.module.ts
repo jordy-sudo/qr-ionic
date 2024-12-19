@@ -19,12 +19,20 @@ const routes: Routes = [
     canActivate:[QueryParamGuard]
   },
   {
-    path: 'qr/app',
-    loadChildren: () => import('./qr/qr.module').then( m => m.QrPageModule)
+    path: 'qr',
+    loadChildren: () => import('./pages/qr/qr.module').then( m => m.QrPageModule)
   },
   {
     path: 'error-page',
     loadChildren: () => import('./pages/error-page/error-page.module').then( m => m.ErrorPagePageModule)
+  },
+  {
+    path: 'crecos',
+    loadChildren: () => import('./pages/crecos/crecos.module').then( m => m.CrecosPageModule)
+  },
+  {
+    path: 'orvjap',
+    loadChildren: () => import('./pages/orvjap/orvjap.module').then( m => m.OrvjapPageModule)
   }
 ];
 
@@ -32,7 +40,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
-    IonicModule.forRoot()
+    IonicModule.forRoot(),
   ],
   exports: [RouterModule],
   declarations:[CreditInfoComponent, CreditCrecosInfoComponent, CreditIcesaInfoComponent]
